@@ -1,0 +1,22 @@
+{
+  "name": "githubcityservertester",
+  "version": "0.0.0",
+  "author": "Israel Blancas @iblancasa",
+  "description": "Server for test GitHubCity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iblancasa/GitHubCityServerTester"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/iblancasa/GitHubCityServerTester/issues"
+  },
+  "homepage": "https://github.com/iblancasa/GitHubCityServerTester#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
