@@ -54,17 +54,54 @@ app.get('/nomoreuser', function (req, res) {
 
 
 
-
 app.get('/search/users', function (req, res) {
   //Test 1
-  if(req.params.q="sort:joined+type:user+location:\"Ja%C3%A9n\"+created:2015-12-24..2016-03-20")
-  fs.readFile("responses/cities/1.json", "utf-8", function(err,data){
-    res.set('Content-Type', 'application/json');
-    res.status(200).send(data);
-  })
-
+  if(req.params.q=="sort%3Ajoined%2Btype%3Auser%2Blocation%3A%22Ja%25C3%25A9n%22%2Bcreated%3A2015-12-24..2016-03-20"){
+    fs.readFile("./responses/cities/jaen1.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+  else if(req.params.q==encodeURIComponent("sort:joined+type:user+location:Granada+created:2008-01-01..2015-12-18")){
+    fs.readFile("responses/cities/granada2.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+  else{
+    res.send("error");
+  }
+  /*
+  else if(req.params.q=="sort:joined+type:user+location:\"Barcelona\""){
+    fs.readFile("responses/cities/barcelona.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+  else if(req.params.q=="sort:joined+type:user+location:\"Barcelona\"+created:2008-01-01..2012-02-09"){
+    fs.readFile("./responses/cities/barcelona2008-01-01-2012-02-09.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+  else if(req.params.q=="sort:joined+type:user+location:\"Barcelona\"+created:2008-01-01..2016-03-20"){
+    fs.readFile("./responses/cities/barcelona2008-01-01-2016-03-20.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      console.log("asdasd");
+      res.status(200).send(data);
+    })
+  }
+  else if(req.params.q=="sort:joined+type:user+location:\"Barcelona\"+created:2008-01-01..2010-01-20"){
+    fs.readFile("./responses/cities/barcelona2008-01-01-2010-01-20.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+*/
 })
-
+app.get('*', function (req, res) {
+  res.send("error");
+})
 
 
 app.listen(3000);
