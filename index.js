@@ -7,13 +7,13 @@ var app = express()
 /**Testing users**********************************/
 app.get('/iblancasa', function (req, res) {
   if(req.params.tab == "repositories"){
-    fs.readFile("responses/iblancasarepositories.html", "utf-8", function(err,data){
+    fs.readFile("responses/users/iblancasarepositories.html", "utf-8", function(err,data){
       res.set('Content-Type', 'text/html');
       res.status(200).send(data);
     });
   }
   else{
-    fs.readFile("responses/iblancasa.html", "utf-8", function(err,data){
+    fs.readFile("responses/users/iblancasa.html", "utf-8", function(err,data){
       res.set('Content-Type', 'text/html');
       res.status(200).send(data);
     });
@@ -22,10 +22,18 @@ app.get('/iblancasa', function (req, res) {
 })
 
 app.get('/iblancasakfollowers', function (req, res) {
-  fs.readFile("responses/iblancasakfollowers.html", "utf-8", function(err,data){
-    res.set('Content-Type', 'text/html');
-    res.status(200).send(data);
-  });
+  if(req.params.tab == "repositories"){
+    fs.readFile("responses/users/iblancasarepositories.html", "utf-8", function(err,data){
+      res.set('Content-Type', 'text/html');
+      res.status(200).send(data);
+    });
+  }
+  else{
+    fs.readFile("responses/users/iblancasakfollowers.html", "utf-8", function(err,data){
+      res.set('Content-Type', 'text/html');
+      res.status(200).send(data);
+    });
+  }
 })
 
 app.get('/erroruser', function (req, res) {
@@ -39,13 +47,13 @@ var requests = 0;
 
 app.get('/nomoreuser', function (req, res) {
   if(requests==0)
-    fs.readFile("responses/iblancasa.html", "utf-8", function(err,data){
+    fs.readFile("responses/users/iblancasa.html", "utf-8", function(err,data){
       res.set('Content-Type', 'text/html');
       requests++;
       res.status(429).send("");
     });
   else{
-    fs.readFile("responses/iblancasa.html", "utf-8", function(err,data){
+    fs.readFile("responses/users/iblancasa.html", "utf-8", function(err,data){
       res.set('Content-Type', 'text/html');
       res.status(200).send(data);
     });
@@ -53,7 +61,7 @@ app.get('/nomoreuser', function (req, res) {
 })
 
 
-
+/*
 app.get('/search/users', function (req, res) {
   //Test 1
   var q = encodeURIComponent(req.query.q.split(' ').join('+'));
@@ -99,11 +107,11 @@ app.get('/search/users', function (req, res) {
       res.status(200).send(data);
     })
   }
-*/
+*//*
 })
 app.get('*', function (req, res) {
   res.send("fura de todo");
 })
-
+*/
 
 app.listen(3000);
