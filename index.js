@@ -65,23 +65,20 @@ app.get('/nomoreuser', function (req, res) {
 app.get('/search/users', function (req, res) {
   //Test 1
   var q = encodeURIComponent(req.query.q.split(' ').join('+'));
-  console.log("quiero")
-  console.log(encodeURIComponent("sort:joined+type:user+location:\"Jaén\""));
-  console.log("tengo");
-  console.log(q.substring(0,56));
 
   if(q.substring(0,56)===encodeURIComponent("sort:joined+type:user+location:\"Jaén\"")){
     fs.readFile("./responses/cities/jaen/jaen1.json", "utf-8", function(err,data){
       res.set('Content-Type', 'application/json');
       res.status(200).send(data);
     })
-  }/*
+  }
   else if(q===encodeURIComponent("sort:joined+type:user+location:\"Granada\"+created:2008-01-01..2015-12-18")){
-    fs.readFile("responses/cities/granada2.json", "utf-8", function(err,data){
+    fs.readFile("responses/cities/granada/granada2.json", "utf-8", function(err,data){
       res.set('Content-Type', 'application/json');
+      console.log("estoy entrando");
       res.status(200).send(data);
     })
-  }
+  }/*
   else{
     res.send("error");
   }
