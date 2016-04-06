@@ -3,7 +3,6 @@ var fs = require('fs');
 
 var app = express()
 
-
 /**Testing users**********************************/
 app.get('/iblancasa', function (req, res) {
   if(req.params.tab == "repositories"){
@@ -18,7 +17,6 @@ app.get('/iblancasa', function (req, res) {
       res.status(200).send(data);
     });
   }
-
 })
 
 app.get('/iblancasakfollowers', function (req, res) {
@@ -193,12 +191,18 @@ app.get('/search/users', function (req, res) {
       res.status(200).send(data);
     })
   }
-
-
-
-
-
-
+  else if(q===encodeURIComponent("sort:joined+type:user+location:\"Ceuta\"")){
+    fs.readFile("responses/cities/ceuta/ceuta.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
+  else if(q===encodeURIComponent("sort:joined+type:user+location:\"Ceuta\"+created:2008-01-01..2016-03-20")){
+    fs.readFile("responses/cities/ceuta/ceuta.json", "utf-8", function(err,data){
+      res.set('Content-Type', 'application/json');
+      res.status(200).send(data);
+    })
+  }
 
 })
 
